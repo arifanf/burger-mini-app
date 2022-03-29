@@ -1,10 +1,17 @@
-import Burger from './Components/Burger/Burger'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+
+import Home from './Pages/Home'
+import BurgerMaker from './Pages/BurgerMaker'
 
 function App() {
   return (
-    <div className="App">
-      <Burger />
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/burger-maker" element={<BurgerMaker />} />
+      </Routes>
+    </>
   );
 }
 
