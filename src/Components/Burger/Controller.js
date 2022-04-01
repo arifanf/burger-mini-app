@@ -1,12 +1,13 @@
 import React from 'react'
 
 import AddButton from './AddButton'
+import MapItem from './MapItem'
 import style from './controller.module.css'
 
 const Controller = (props) => {
   return (
     <>
-        <div className={style.ingredient_selector}>
+        <div className={style.ingredients_selector}>
             <h5>Add Ingredients</h5>
             <div>
                 <AddButton label="Patty" clickHandler={() => props.addIngredientsHandler('patty')} />
@@ -17,9 +18,20 @@ const Controller = (props) => {
             </div>
         </div>
         <div className={style.ingredients_map}>
+            {/* loop untuk membuat list 'ingredient' sesuai dengan urutan pada array */}
             {props.ingredients.map( (item, index) => {
                 return (
-                    <div key={index}>{item}</div>
+                    <>
+                        {/* Me-render MapItem untuk setiap item dari 'ingredients' */}
+                        <MapItem
+                            label={item}
+                            key={index}
+                            removeHandler={() => props.removeIngredientsHandler(index)}
+                            upHandler={() => props.moveUpIngredientsHandler(index)}
+                            downHandler={() => props.moveDownIngredientsHandler(index)}
+                            firstItem={ index === 0 }
+                            lastItem={ index === props.ingredients.length - 1 } />
+                    </>
                 )
             } )}
         </div>
