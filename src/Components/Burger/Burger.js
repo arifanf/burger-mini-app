@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import BurgerContext from '../../Context/BurgerContext'
 
 import Bun from './Bun'
 import Patty from './Patty'
@@ -8,12 +9,14 @@ import Tomato from './Tomato'
 
 import style from './burger.module.css'
 
-const Burger = (props) => {
+const Burger = () => {
+
+  const ctx = useContext(BurgerContext)
 
   return (
     <div className={style.burger}>
         <Bun type="top" />
-        { props.ingredients.map( (item, index) => {
+        { ctx.ingredients.map( (item, index) => {
           switch (item) {
             case 'patty':
               return <Patty key={index} />
